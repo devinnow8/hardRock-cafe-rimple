@@ -6,18 +6,14 @@ const MainBody = () => {
   return (
     <div>
       <div>
-        <div className="Title">
+        <div className="food_item_container">
           {TitleData.map((heading) => {
-            return <TitleHead title={heading.title} image={heading.image} />;
+            return <TitleHead image={heading.image} title={heading.title} />;
           })}
         </div>
         <hr />
       </div>
-      <div>
-        {" "}
-        
-      </div>
-      
+      <div> </div>
     </div>
   );
 };

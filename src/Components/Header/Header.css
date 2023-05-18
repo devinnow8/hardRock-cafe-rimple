@@ -1,5 +1,34 @@
-.Buttons{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.Buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.LogoName,
+.Menu {
+  display: flex;
+  justify-content: space-evenly;
+  color: brown;
+}
+
+.Image1 {
+  height: 80px;
+}
+.Image2 {
+  height: 50px;
+  position: absolute;
+}
+.menu_container {
+  padding-top: 0;
+  padding-bottom: 40px;
+}
+.number {
+  padding: 0;
+  background-color: rgb(246, 17, 17);
+  border-radius: 50%;
+  color: white;
+  position: sticky;
+}
+.Cart-image{
+  padding-right: 42px;
 }

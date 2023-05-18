@@ -1,5 +1,18 @@
 .Footer {
   background-color: black;
   color: azure;
+  height: 400px;
 }
-
+.hotel-logo {
+  height: 80px;
+}
+.first-row {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  height: 300px;
+  align-items: center;
+}
+.second-row {
+  color: aliceblue;
+}
