@@ -1,19 +1,14 @@
 import React from "react";
 import TitleHead from "./TitleHead";
 import TitleData from "./TitleData";
+import { useState } from "react";
 
 const MainBody = () => {
   return (
-    <div>
-      <div>
-        <div className="food_item_container">
-          {TitleData.map((heading) => {
-            return <TitleHead image={heading.image} title={heading.title} />;
-          })}
-        </div>
-        <hr />
-      </div>
-      <div> </div>
+    <div className="food_item_container">
+      {TitleData.map((heading) => {
+        return <TitleHead image={heading.image} title={heading.title} />;
+      })}
     </div>
   );
 };

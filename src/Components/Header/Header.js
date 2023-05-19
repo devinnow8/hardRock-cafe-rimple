@@ -5,7 +5,7 @@ import cart from "./Logo/cart.png";
 import hotellogo from "./Logo/hotel.png";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({clickHandler}) => {
   return (
     <>
       <div className="header_container">
@@ -19,9 +19,9 @@ const Header = () => {
             SUNRISE
           </h2>
         </div>
-        <div className="Cart-image">
+        <div className="Cart-image" onClick={()=>clickHandler()}>
           <img className="Image2" src={cart} />
-          <span className="number"> 0</span>
+          <span className="number">2</span>
         </div>
       </div>
 

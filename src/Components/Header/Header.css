@@ -23,12 +23,15 @@
   padding-bottom: 40px;
 }
 .number {
-  padding: 0;
   background-color: rgb(246, 17, 17);
-  border-radius: 50%;
+  border: 2px solid blueviolet;
+  border-radius: 80%;
   color: white;
   position: sticky;
+  padding: 2px;
+  width: 10px;
 }
-.Cart-image{
+.Cart-image {
   padding-right: 42px;
+  cursor: pointer;
 }

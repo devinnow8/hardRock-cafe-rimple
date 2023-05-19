@@ -8,8 +8,8 @@ const SocialButtons = () => {
           href="/"
           className="fa fa-facebook"
           style={{
-            border: "1px solid rgb(233, 230, 230)",
-            borderRadius: "60%",
+            borderRadius: "50%",
+            color: "pink",
           }}
         >
           {" "}
@@ -18,24 +18,24 @@ const SocialButtons = () => {
           href="/"
           className="fa fa-twitter"
           style={{
-            border: "1px solid rgb(233, 230, 230)",
             borderRadius: "50%",
+            color: "pink",
           }}
         ></a>
         <a
           href="/"
           className="fa fa-google"
           style={{
-            border: "1px solid rgb(233, 230, 230)",
             borderRadius: "50%",
+            color: "pink",
           }}
         ></a>
         <a
           href="/"
           className="fa fa-instagram"
           style={{
-            border: "1px solid rgb(233, 230, 230)",
             borderRadius: "50%",
+            color: "pink",
           }}
         >
           {" "}
@@ -43,7 +43,7 @@ const SocialButtons = () => {
       </div>
 
       <div className="copyright-terms">
-        <a href="/" className=" fa fa-copyright"></a>
+        <a href="/" className=" fa fa-copyright" style={{ color: "white" }}></a>
         <h6> Copyright. All rights reserved</h6>
       </div>
     </div>

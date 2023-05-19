@@ -4,7 +4,7 @@ const TitleHead = ({ image, title }) => {
   return (
     <div className="single_card">
       <div className="food_image">
-        <img src={image} style={{ width: " 140px" }} />
+        <img  className= " food-picture" src={image} style={{ width: " 140px" }} />
       </div>{" "}
       <div className="paragraph">
         <div className=" food-title">
