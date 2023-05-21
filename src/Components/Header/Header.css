@@ -1,37 +1,41 @@
-.Buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+.buttons {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
-.LogoName,
-.Menu {
-  display: flex;
-  justify-content: space-evenly;
-  color: brown;
+.logo-name,
+.menu {
+	display: flex;
+	justify-content: space-evenly;
+	color: brown;
 }
 
-.Image1 {
-  height: 80px;
+.hotel-img {
+	height: 80px;
 }
-.Image2 {
-  height: 50px;
-  position: absolute;
+.cart-image {
+	height: 50px;
+	position: absolute;
 }
-.menu_container {
-  padding-top: 0;
-  padding-bottom: 40px;
+.menu-container {
+	padding-top: 0;
+	padding-bottom: 40px;
 }
 .number {
-  background-color: rgb(246, 17, 17);
-  border: 2px solid blueviolet;
-  border-radius: 80%;
-  color: white;
-  position: sticky;
-  padding: 2px;
-  width: 10px;
+	background-color: rgb(246, 17, 17);
+	border: 2px solid blueviolet;
+	border-radius: 80%;
+	color: white;
+	position: sticky;
+	padding: 2px;
+	width: 10px;
 }
-.Cart-image {
-  padding-right: 42px;
-  cursor: pointer;
+.cart {
+	padding-right: 42px;
+	cursor: pointer;
+}
+
+.custom-btn {
+	margin-right: 10px;
 }

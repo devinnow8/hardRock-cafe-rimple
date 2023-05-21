@@ -1,36 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomButton from "./CustomButton";
 import ButtonData from "./ButtonData";
 import cart from "./Logo/cart.png";
 import hotellogo from "./Logo/hotel.png";
 import "./Header.css";
 
-const Header = ({clickHandler}) => {
+const Header = ({ clickHandler }) => {
+  const [cartCount, setCartCount] = useState(localStorage.getItem('item-counter'))
+
   return (
     <>
-      <div className="header_container">
-        <div className="HotelLogo">
-          <img className="Image1" src={hotellogo} />
+      <div className="header-container">
+        <div className="hotel">
+          <img className="hotel-img" src={hotellogo} />
         </div>
-        <div className="heading_center">
+        <div className="heading-center">
           {" "}
-          <h2 className="LogoName" style={{ paddingRight: "76px" }}>
+          <h2 className="logo-name" style={{ paddingRight: "76px" }}>
             {" "}
             SUNRISE
           </h2>
         </div>
-        <div className="Cart-image" onClick={()=>clickHandler()}>
-          <img className="Image2" src={cart} />
-          <span className="number">2</span>
+        <div className="cart" onClick={() => clickHandler()}>
+          <img className="cart-image" src={cart} />
+          <span className="number">{cartCount}</span>
         </div>
       </div>
 
-      <div className="menu_container">
-        <div className="Heading">
+      <div className="menu-container">
+        <div className="heading">
           {" "}
-          <h3 className="Menu"> Our Menu</h3>
+          <h3 className="menu"> Our Menu</h3>
         </div>
-        <div className="Buttons">
+        <div className="buttons">
           {ButtonData.map((btn) => {
             return <CustomButton title={btn.title} />;
           })}

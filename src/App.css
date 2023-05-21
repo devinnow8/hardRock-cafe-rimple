@@ -1,25 +1,25 @@
 .food_item_container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding-right: 100px;
-  padding-left: 100px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding-right: 100px;
+	padding-left: 100px;
 }
 .food_image {
-  padding: 37px;
+	padding: 37px;
 }
 .food_image img {
-  width: 100%;
+	width: 100%;
 }
 .single_card {
-  width: 50%;
-  display: flex;
-  padding-bottom: 30px;
+	width: 50%;
+	display: flex;
+	padding-bottom: 30px;
 }
 
-.header_container {
-  display: flex;
-  justify-content: space-between;
-  padding: 2%;
-  padding-bottom: 0;
+.header-container {
+	display: flex;
+	justify-content: space-between;
+	padding: 2%;
+	padding-bottom: 0;
 }
