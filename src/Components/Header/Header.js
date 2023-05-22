@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import CustomButton from "./CustomButton";
 import ButtonData from "./ButtonData";
 import cart from "./Logo/cart.png";
 import hotellogo from "./Logo/hotel.png";
 import "./Header.css";
 
-const Header = ({ clickHandler }) => {
-  const [cartCount, setCartCount] = useState(localStorage.getItem('item-counter'))
+
+const Header = ({clickHandler, itemCounter}) => {
+ 
 
   return (
     <>
       <div className="header-container">
         <div className="hotel">
-          <img className="hotel-img" src={hotellogo} />
+          <img className="hotel-img" src={hotellogo}  alt= {" "}/>
         </div>
         <div className="heading-center">
           {" "}
@@ -22,8 +23,8 @@ const Header = ({ clickHandler }) => {
           </h2>
         </div>
         <div className="cart" onClick={() => clickHandler()}>
-          <img className="cart-image" src={cart} />
-          <span className="number">{cartCount}</span>
+          <img className="cart-image" src={cart} alt={""} />
+          <span className="number">{itemCounter}</span>
         </div>
       </div>
 

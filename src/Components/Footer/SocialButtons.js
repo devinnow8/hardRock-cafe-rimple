@@ -14,8 +14,7 @@ const SocialButtons = () => {
         >
           {" "}
         </a>
-        <a
-          href="/"
+        <a href="/"
           className="fa fa-twitter"
           style={{
             borderRadius: "50%",

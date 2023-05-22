@@ -10,7 +10,7 @@ const Cart = () => {
           <div className="head-line">
             <h5 className="phone-num"> +91 1234567890</h5>
             <span className="cart">
-              <img className="cart2" src={cart} />
+              <img className="cart2" src={cart} alt={""}/>
             </span>
             <span className="card-items" >  <h5> </h5> Items- $1600</span>
           </div>

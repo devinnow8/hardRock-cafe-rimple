@@ -5,7 +5,7 @@ import SocialButtons from "./SocialButtons";
 
 const Footer = () => {
   return (
-    <div className="Footer">
+    <div className="footer">
       <div className="first-row">
         <span className="hotel">
           {" "}
