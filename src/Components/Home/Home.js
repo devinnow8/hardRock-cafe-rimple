@@ -1,28 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Header/Header";
 import MainBody from "../MainBody/MainBody";
 import Footer from "../Footer/Footer";
 import Cart from "../MainBody/Cart";
-import { useState } from "react";
+
 const Home = () => {
-  let [cart, setCart] = useState(false);
-  const clickHandler=()=> {
-    setCart(!cart);
+  const [isCartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+
+  const handleToggleCart = () => {
+    setCartOpen(!isCartOpen);
   }
-  const [itemCounter, setItemCounter] = useState(1);
-  const handleItemCount = (isSubtract) => {
-    if (isSubtract === true) {
-      if (itemCounter === 1)
-    setItemCounter((prevState) => prevState - 1);     
-    } 
-    else setItemCounter((prevState) => prevState + 1);
+
+  const handleAddCartItems = (item) => {
+    const oldItemIndex = cartItems.findIndex(oldItem => oldItem.id === item.id)
+    if (oldItemIndex !== -1) {
+      const updatedItems = [...cartItems]
+      updatedItems[oldItemIndex]['count'] = updatedItems[oldItemIndex].count + 1
+      setCartItems(updatedItems)
+
+    } else {
+      setCartItems(prevState => [...prevState, { ...item, count: 1 }])
+    }
+  };
+
+  console.log('cartItems', cartItems)
+
+  const handleRemoveCartItems = (index) => {
+    const updatedItems = [...cartItems]
+    if (updatedItems[index]['count'] > 1) {
+      const updatedItems = [...cartItems]
+      updatedItems[index]['count'] = updatedItems[index].count - 1
+      setCartItems(updatedItems)
+    } else {
+      updatedItems.splice(index, 1)
+      setCartItems(updatedItems)
+    }
   };
 
   return (
     <>
-      <Header clickHandler={clickHandler} />
-      {cart && <Cart />}
-      <MainBody onUpdateItemCount={handleItemCount} />
+      <Header onToggleCart={handleToggleCart} cartItems={cartItems} />
+      {isCartOpen && <Cart onToggleCart={handleToggleCart} />}
+      <MainBody
+        cartItems={cartItems}
+        onAddItems={handleAddCartItems}
+        onRemoveItems={handleRemoveCartItems}
+      />
       <Footer />
     </>
   );

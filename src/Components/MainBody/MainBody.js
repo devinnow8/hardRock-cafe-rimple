@@ -1,17 +1,21 @@
 import React from "react";
 import FoodItem from "./FoodItem";
-import TitleData from "./TitleData";
+import FoodItemData from "./FoodItemData";
 
-const MainBody = ({ onUpdateItemCount, itemCounter }) => {
+const MainBody = ({ cartItems, onAddItems, onRemoveItems }) => {
   return (
     <div className="fooditem-container">
-      {TitleData.map((heading) => {
+      {FoodItemData.map((item, index) => {
+        const foodItem = cartItems.find(x => x.id === item.id)
         return (
           <FoodItem
-            onUpdateItemCount={onUpdateItemCount}
-            itemCounter={itemCounter}
-            image={heading.image}
-            title={heading.title}
+            index={index}
+            foodItem={foodItem}
+            item={item}
+            onAddItems={onAddItems}
+            onRemoveItems={onRemoveItems}
+            image={item.image}
+            title={item.title}
           />
         );
       })}
