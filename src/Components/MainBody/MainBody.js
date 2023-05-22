@@ -1,13 +1,13 @@
 import React from "react";
 import FoodItem from "./FoodItem";
 import TitleData from "./TitleData";
-import { useState } from "react";
 
-const MainBody = () => {
+
+const MainBody = ({onUpdateItemCount}) => {
   return (
     <div className="food_item_container">
       {TitleData.map((heading) => {
-        return <FoodItem image={heading.image} title={heading.title} />;
+        return <FoodItem onUpdateItemCount={onUpdateItemCount} image={heading.image} title={heading.title} />;
       })}
     </div>
   );
