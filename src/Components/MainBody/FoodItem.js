@@ -1,7 +1,15 @@
 import React from "react";
 import "./FoodItem.css";
 
-const FoodItem = ({ image, title, onUpdateItemCount, itemCounter }) => {
+
+const FoodItem = ({
+  image,
+  title,
+  ontoggleAddItem,
+  index,
+  onfoodItem,
+  item,
+}) => {
   return (
     <div className="single-card">
       <div className="food-image">
@@ -30,22 +38,25 @@ const FoodItem = ({ image, title, onUpdateItemCount, itemCounter }) => {
         </span>
         <span className="add-moreitems">
           {" "}
-          <button className="add-item">Add +</button>
-          <div className="item-counter">
-            <button
-              className="add-to-cart"
-              onClick={() => onUpdateItemCount(false)}
-            >
-              +
-            </button>
-            {(itemCounter = 1)}
-            <button
-              className=" add-to-cart"
-              onClick={() => onUpdateItemCount(true)}
-            >
-              -
-            </button>
-          </div>
+          <button className="add-item" onClick={() => ontoggleAddItem(item)}>
+            Add +
+          </button>
+          {onfoodItem && <div className="item-counter">
+              <button
+                className="add-to-cart"
+                onClick={() => ontoggleAddItem(item)} >
+             
+                +
+              </button>
+              {onfoodItem.count}
+              <button
+                className=" add-to-cart"
+                onClick={() => ontoggleAddItem()}
+              >
+                -
+              </button>
+            </div>
+}
         </span>
       </div>
     </div>

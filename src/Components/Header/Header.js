@@ -5,15 +5,12 @@ import cart from "./Logo/cart.png";
 import hotellogo from "./Logo/hotel.png";
 import "./Header.css";
 
-
-const Header = ({clickHandler, itemCounter}) => {
- 
-
+const Header = ({ ontoggleCartFunction, onaddItem }) => {
   return (
     <>
       <div className="header-container">
         <div className="hotel">
-          <img className="hotel-img" src={hotellogo}  alt= {" "}/>
+          <img className="hotel-img" src={hotellogo} alt={" "} />
         </div>
         <div className="heading-center">
           {" "}
@@ -22,9 +19,9 @@ const Header = ({clickHandler, itemCounter}) => {
             SUNRISE
           </h2>
         </div>
-        <div className="cart" onClick={() => clickHandler()}>
+        <div className="cart" onClick={() => ontoggleCartFunction()}>
           <img className="cart-image" src={cart} alt={""} />
-          <span className="number">{itemCounter}</span>
+          <span className="number"> {onaddItem}</span>
         </div>
       </div>
 
