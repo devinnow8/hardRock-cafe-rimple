@@ -7,32 +7,53 @@ import Cart from "../MainBody/Cart";
 const Home = () => {
   const [cartModal, setcartModal] = useState(false);
   const [addItem, setaddItem] = useState([]);
+  const [disableItem, setdisableItem] = useState(false);
+  const [itembutton, setItemButton] = useState([]);
 
   const toggleCartFunction = () => {
     setcartModal(!cartModal);
   };
 
   const toggleAddItem = (item) => {
-    const ArrayOfItem = addItem.findIndex((oldItem) => oldItem.id === item.id);
-    if (ArrayOfItem !== -1) {
-      const UpdatedtoggleItem = [...addItem];
-      UpdatedtoggleItem[ArrayOfItem]["count"] = UpdatedtoggleItem[ArrayOfItem].count + 1;
-      setaddItem(UpdatedtoggleItem);
+    const indexOfitem = addItem.findIndex((oldItem) => oldItem.id === item.id);
+    if (indexOfitem !== -1) {
+      const updatedToggleItem = [...addItem];
+      updatedToggleItem[indexOfitem]["count"] =
+        updatedToggleItem[indexOfitem].count + 1;
+      setaddItem(updatedToggleItem);
     } else {
-      setaddItem((prev) => [...prev, {...item, count: 1 }]);
+      setaddItem((prev) => [...prev, { ...item, count: 1 }]);
     }
   };
- 
-return (
-  <div>
-    <Header ontoggleCartFunction={toggleCartFunction} onaddItem={addItem} />
-    {cartModal && <Cart ontoggleAddItem={toggleAddItem}/>}
-    
-    <MainBody ontoggleAddItem={toggleAddItem} onaddItem={addItem}  />
-    <Footer />
-  </div>
-);
 
-}
+  const toggleRemoveItem = (index) => {
+    const updatedToggleItem = [...addItem];
+    if (updatedToggleItem[index]["count"] > 1) {
+      updatedToggleItem[index]["count"] = updatedToggleItem[index].count - 1;
+      setaddItem(updatedToggleItem);
+    } else {
+      updatedToggleItem.splice(index, 1);
+      setaddItem(updatedToggleItem);
+    }
+  };
+  const buttondisableItem = () => {
+    setdisableItem(!disableItem);
+  };
+
+  return (
+    <div>
+      <Header ontoggleCartFunction={toggleCartFunction} onaddItem={addItem} />
+      {cartModal && <Cart ontoggleAddItem={toggleAddItem} />}
+
+      <MainBody
+        ontoggleAddItem={toggleAddItem}
+        onaddItem={addItem}
+        ontoggleRemoveItem={toggleRemoveItem}
+        onbuttondisableItem={buttondisableItem}
+      />
+      <Footer />
+    </div>
+  );
+};
 
 export default Home;

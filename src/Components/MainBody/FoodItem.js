@@ -1,7 +1,6 @@
 import React from "react";
 import "./FoodItem.css";
 
-
 const FoodItem = ({
   image,
   title,
@@ -9,6 +8,9 @@ const FoodItem = ({
   index,
   onfoodItem,
   item,
+  ontoggleRemoveItem,
+  onbuttondisableItem,
+  
 }) => {
   return (
     <div className="single-card">
@@ -38,25 +40,33 @@ const FoodItem = ({
         </span>
         <span className="add-moreitems">
           {" "}
-          <button className="add-item" onClick={() => ontoggleAddItem(item)}>
+          <button
+            className="add-item"
+            disabled= {onfoodItem}
+            onClick={() => {
+              ontoggleAddItem(item);
+              onbuttondisableItem()
+            }} 
+          >
             Add +
           </button>
-          {onfoodItem && <div className="item-counter">
+          {onfoodItem && (
+            <div className="item-counter">
               <button
                 className="add-to-cart"
-                onClick={() => ontoggleAddItem(item)} >
-             
+                onClick={() => ontoggleAddItem(item)}
+              >
                 +
               </button>
               {onfoodItem.count}
               <button
                 className=" add-to-cart"
-                onClick={() => ontoggleAddItem()}
+                onClick={() => ontoggleRemoveItem(index)}
               >
                 -
               </button>
             </div>
-}
+          )}
         </span>
       </div>
     </div>

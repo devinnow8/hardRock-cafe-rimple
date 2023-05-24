@@ -9,6 +9,7 @@ const Cart = ({ontoggleAddItem}) => {
         <div className="cart-modal-body">
           <div className="head-line">
             <h5 className="phone-num"> +91 1234567890</h5>
+            <span> </span>
             <span className="cart">
               <img className="cart2" src={cart} alt={""}/>
             </span>

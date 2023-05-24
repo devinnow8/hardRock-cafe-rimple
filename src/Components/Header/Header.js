@@ -5,7 +5,7 @@ import cart from "./Logo/cart.png";
 import hotellogo from "./Logo/hotel.png";
 import "./Header.css";
 
-const Header = ({ ontoggleCartFunction, onaddItem }) => {
+const Header = ({ ontoggleCartFunction, onaddItem}) => {
   return (
     <>
       <div className="header-container">
@@ -21,7 +21,7 @@ const Header = ({ ontoggleCartFunction, onaddItem }) => {
         </div>
         <div className="cart" onClick={() => ontoggleCartFunction()}>
           <img className="cart-image" src={cart} alt={""} />
-          <span className="number"> {onaddItem}</span>
+          <span className="number"> {onaddItem.length}</span>
         </div>
       </div>
 
@@ -32,7 +32,8 @@ const Header = ({ ontoggleCartFunction, onaddItem }) => {
         </div>
         <div className="buttons">
           {ButtonData.map((btn) => {
-            return <CustomButton title={btn.title} />;
+          return <CustomButton title={btn.title}  
+             />;
           })}
         </div>
       </div>
