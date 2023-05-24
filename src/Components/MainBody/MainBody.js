@@ -7,6 +7,7 @@ const MainBody = ({
   onaddItem,
   ontoggleRemoveItem,
   onbuttondisableItem,
+  disableItem
  
 }) => {
   return (
@@ -24,6 +25,7 @@ const MainBody = ({
             title={item.title}
             ontoggleRemoveItem={ontoggleRemoveItem}
             onbuttondisableItem={onbuttondisableItem}
+            ondisableItem={disableItem}
           
           />
         );

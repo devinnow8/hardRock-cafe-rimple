@@ -10,7 +10,7 @@ const FoodItem = ({
   item,
   ontoggleRemoveItem,
   onbuttondisableItem,
-  
+  ondisableItem,
 }) => {
   return (
     <div className="single-card">
@@ -40,16 +40,30 @@ const FoodItem = ({
         </span>
         <span className="add-moreitems">
           {" "}
-          <button
-            className="add-item"
-            disabled= {onfoodItem}
-            onClick={() => {
-              ontoggleAddItem(item);
-              onbuttondisableItem()
-            }} 
-          >
-            Add +
-          </button>
+          {ondisableItem ? (
+            <button
+              className="add-item"
+              onClick={() => {
+                ontoggleAddItem(item);
+                onbuttondisableItem();
+              }}
+            >
+              Add +
+            </button>
+          ) : (
+            <button
+              className="add-item"
+              onClick={() => {
+                ontoggleAddItem();
+                onbuttondisableItem();
+                {
+                  onfoodItem.count = 0;
+                }
+              }}
+            >
+              Remove
+            </button>
+          )}
           {onfoodItem && (
             <div className="item-counter">
               <button

@@ -7,7 +7,7 @@ import Cart from "../MainBody/Cart";
 const Home = () => {
   const [cartModal, setcartModal] = useState(false);
   const [addItem, setaddItem] = useState([]);
-  const [disableItem, setdisableItem] = useState(false);
+  const [disableItem, setdisableItem] = useState(true);
   const [itembutton, setItemButton] = useState([]);
 
   const toggleCartFunction = () => {
@@ -37,7 +37,8 @@ const Home = () => {
     }
   };
   const buttondisableItem = () => {
-    setdisableItem(!disableItem);
+  setdisableItem(!disableItem);
+  
   };
 
   return (
@@ -50,6 +51,7 @@ const Home = () => {
         onaddItem={addItem}
         ontoggleRemoveItem={toggleRemoveItem}
         onbuttondisableItem={buttondisableItem}
+        disableItem={disableItem}
       />
       <Footer />
     </div>
