@@ -1,7 +1,7 @@
 import React from "react";
 import "./FoodItem.css";
 
-const FoodItem = ({ image, title, ontoggleAddItem, index, onfoodItem, item, ontoggleRemoveItem, onbuttondisableItem, ondisableItem }) => {
+const FoodItem = ({ image, title, ontoggleAddItem, index, selectedItem, item, ontoggleRemoveItem }) => {
 	return (
 		<div className="single-card">
 			<div className="food-image">
@@ -22,35 +22,26 @@ const FoodItem = ({ image, title, ontoggleAddItem, index, onfoodItem, item, onto
 				</span>
 				<span className="add-moreitems">
 					{" "}
-					{ondisableItem ? (
+					{
 						<button
 							className="add-item"
 							onClick={() => {
-								ontoggleAddItem(item);
-								onbuttondisableItem();
-							}}
-						>
-							Add +
-						</button>
-					) : (
-						<button
-							className="add-item"
-							onClick={() => {
-								onbuttondisableItem();
-								{
-									onfoodItem.count = 0;
+								if (selectedItem) {
+									ontoggleRemoveItem(index, true);
+								} else {
+									ontoggleAddItem(item);
 								}
 							}}
 						>
-							Remove
+							{selectedItem ? "Remove" : "Add +"}
 						</button>
-					)}
-					{onfoodItem && (
+					}
+					{selectedItem && (
 						<div className="item-counter">
 							<button className="add-to-cart" onClick={() => ontoggleAddItem(item)}>
 								+
 							</button>
-							{onfoodItem.count}
+							{selectedItem.count}
 							<button className=" add-to-cart" onClick={() => ontoggleRemoveItem(index)}>
 								-
 							</button>

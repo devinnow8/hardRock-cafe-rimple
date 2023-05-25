@@ -11,7 +11,6 @@ const defaultCategory = FoodCategoryData[0].category;
 const Home = () => {
 	const [cartModal, setcartModal] = useState(false);
 	const [addItem, setaddItem] = useState([]);
-	const [disableItem, setdisableItem] = useState(true);
 
 	const [category, setCategory] = useState(defaultCategory);
 	const [foodItemsData, setFoodItemsData] = useState([]);
@@ -44,19 +43,15 @@ const Home = () => {
 		}
 	};
 
-	const toggleRemoveItem = (index) => {
+	const handleRemoveItem = (index, isRemove = false) => {
 		const updatedToggleItem = [...addItem];
-		if (updatedToggleItem[index]["count"] > 1) {
-			updatedToggleItem[index]["count"] = updatedToggleItem[index].count - 1;
-			setaddItem(updatedToggleItem);
-		} else {
+		if (isRemove || updatedToggleItem[index]["count"] === 1) {
 			updatedToggleItem.splice(index, 1);
 			setaddItem(updatedToggleItem);
+		} else {
+			updatedToggleItem[index]["count"] = updatedToggleItem[index].count - 1;
+			setaddItem(updatedToggleItem);
 		}
-	};
-
-	const buttondisableItem = () => {
-		setdisableItem(!disableItem);
 	};
 
 	return (
@@ -64,7 +59,7 @@ const Home = () => {
 			<Header onToggleCartFunction={toggleCartFunction} onaddItem={addItem} onFilterCategory={handleFilterCategory} />
 			{cartModal && <Cart ontoggleAddItem={toggleAddItem} />}
 
-			<MainBody foodItemsData={foodItemsData} ontoggleAddItem={toggleAddItem} onaddItem={addItem} ontoggleRemoveItem={toggleRemoveItem} onbuttondisableItem={buttondisableItem} disableItem={disableItem} selectedCategory={category} />
+			<MainBody foodItemsData={foodItemsData} ontoggleAddItem={toggleAddItem} onaddItem={addItem} ontoggleRemoveItem={handleRemoveItem} selectedCategory={category} />
 			<Footer />
 		</div>
 	);
