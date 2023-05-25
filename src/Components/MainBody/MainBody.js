@@ -7,14 +7,16 @@ const MainBody = ({
   onaddItem,
   ontoggleRemoveItem,
   onbuttondisableItem,
-  disableItem
- 
+  disableItem,
+  onitembutton,
+
 }) => {
   return (
     <div className="fooditem-container">
       {TitleData.map((item, index) => {
         const foodItems = onaddItem.find((x) => x.id === item.id);
-        
+        const filteredItem = onitembutton.filter((a) => a.category);
+
         return (
           <FoodItem
             ontoggleAddItem={ontoggleAddItem}
@@ -26,7 +28,7 @@ const MainBody = ({
             ontoggleRemoveItem={ontoggleRemoveItem}
             onbuttondisableItem={onbuttondisableItem}
             ondisableItem={disableItem}
-          
+            
           />
         );
       })}

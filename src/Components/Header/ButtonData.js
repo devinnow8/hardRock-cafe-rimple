@@ -1,8 +1,8 @@
 
 const ButtonData = [
-  { id: 1, title: "ALL" },
-  { id: 2, title: "Breakfast" },
-  { id: 3, title: "Lunch" },
-  { id: 4, title: "Shakes" },
+  { id: 1, category: "ALL" },
+  { id: 2, category: "Breakfast" },
+  { id: 3, category: "Lunch" },
+  { id: 4, category: "Shakes" },
 ];
 export default ButtonData;

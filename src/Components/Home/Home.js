@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import MainBody from "../MainBody/MainBody";
 import Footer from "../Footer/Footer";
 import Cart from "../MainBody/Cart";
+import category from "../Header/Header";
+import filteredItem from "../MainBody/MainBody";
+import categoryOfButton from "../Header/Header";
 
 const Home = () => {
   const [cartModal, setcartModal] = useState(false);
   const [addItem, setaddItem] = useState([]);
   const [disableItem, setdisableItem] = useState(true);
-  const [itembutton, setItemButton] = useState([]);
+
+  const [itembutton, setItemButton] = useState(category);
+
+  useEffect(() => {}, [itembutton]);
 
   const toggleCartFunction = () => {
     setcartModal(!cartModal);
@@ -37,25 +43,33 @@ const Home = () => {
     }
   };
   const buttondisableItem = () => {
-  setdisableItem(!disableItem);
-  
+    setdisableItem(!disableItem);
+
+    const categoryOfItems = () => {
+      setItemButton(categoryOfButton === filteredItem);
+    };
+    return (
+      <div>
+        <Header
+          ontoggleCartFunction={toggleCartFunction}
+          onaddItem={addItem}
+          oncategoryOfItems={categoryOfItems}
+          itembutton={itembutton}
+        />
+        {cartModal && <Cart ontoggleAddItem={toggleAddItem} />}
+
+        <MainBody
+          ontoggleAddItem={toggleAddItem}
+          onaddItem={addItem}
+          ontoggleRemoveItem={toggleRemoveItem}
+          onbuttondisableItem={buttondisableItem}
+          disableItem={disableItem}
+          onitembutton={itembutton}
+        />
+        <Footer />
+      </div>
+    );
   };
-
-  return (
-    <div>
-      <Header ontoggleCartFunction={toggleCartFunction} onaddItem={addItem} />
-      {cartModal && <Cart ontoggleAddItem={toggleAddItem} />}
-
-      <MainBody
-        ontoggleAddItem={toggleAddItem}
-        onaddItem={addItem}
-        ontoggleRemoveItem={toggleRemoveItem}
-        onbuttondisableItem={buttondisableItem}
-        disableItem={disableItem}
-      />
-      <Footer />
-    </div>
-  );
 };
 
 export default Home;

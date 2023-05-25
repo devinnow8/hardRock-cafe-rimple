@@ -1,16 +1,8 @@
 import React from "react";
 import "./FoodItem.css";
 
-const FoodItem = ({
-  image,
-  title,
-  ontoggleAddItem,
-  index,
-  onfoodItem,
-  item,
-  ontoggleRemoveItem,
-  onbuttondisableItem,
-  ondisableItem,
+const FoodItem = ({image,title,ontoggleAddItem,index,onfoodItem,item,ontoggleRemoveItem,
+onbuttondisableItem,ondisableItem,
 }) => {
   return (
     <div className="single-card">
@@ -54,8 +46,7 @@ const FoodItem = ({
             <button
               className="add-item"
               onClick={() => {
-                ontoggleAddItem();
-                onbuttondisableItem();
+              onbuttondisableItem();
                 {
                   onfoodItem.count = 0;
                 }

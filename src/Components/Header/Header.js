@@ -5,7 +5,7 @@ import cart from "./Logo/cart.png";
 import hotellogo from "./Logo/hotel.png";
 import "./Header.css";
 
-const Header = ({ ontoggleCartFunction, onaddItem}) => {
+const Header = ({ontoggleCartFunction,onaddItem,oncategoryOfItems,itembutton}) => {
   return (
     <>
       <div className="header-container">
@@ -32,8 +32,13 @@ const Header = ({ ontoggleCartFunction, onaddItem}) => {
         </div>
         <div className="buttons">
           {ButtonData.map((btn) => {
-          return <CustomButton title={btn.title}  
-             />;
+             const categoryOfButton = itembutton.find(x=>x.category===btn.category);
+            return (
+              <CustomButton
+                category={btn.category}
+                oncategoryOfItems={oncategoryOfItems}
+                categoryOfButton={categoryOfButton}/>
+            );
           })}
         </div>
       </div>

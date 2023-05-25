@@ -13,7 +13,7 @@ const Cart = ({ontoggleAddItem}) => {
             <span className="cart">
               <img className="cart2" src={cart} alt={""}/>
             </span>
-            <span className="card-items" >  <h5> { ()=> ontoggleAddItem()}</h5> Items- $1600</span>
+            <span className="card-items" >  <h5> {()=> ontoggleAddItem()}</h5> Items- $1600</span>
           </div>
         </div>
       </div>
