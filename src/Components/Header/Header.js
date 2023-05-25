@@ -1,11 +1,16 @@
 import React from "react";
 import CustomButton from "./CustomButton";
-import ButtonData from "./ButtonData";
+import { ButtonData } from "./ButtonData";
 import cart from "./Logo/cart.png";
 import hotellogo from "./Logo/hotel.png";
 import "./Header.css";
 
-const Header = ({ontoggleCartFunction,onaddItem,oncategoryOfItems,itembutton}) => {
+const Header = ({
+  onToggleCartFunction,
+  onaddItem,
+  oncategoryOfItems,
+  itembutton,
+}) => {
   return (
     <>
       <div className="header-container">
@@ -19,7 +24,7 @@ const Header = ({ontoggleCartFunction,onaddItem,oncategoryOfItems,itembutton}) =
             SUNRISE
           </h2>
         </div>
-        <div className="cart" onClick={() => ontoggleCartFunction()}>
+        <div className="cart" onClick={() => onToggleCartFunction()}>
           <img className="cart-image" src={cart} alt={""} />
           <span className="number"> {onaddItem.length}</span>
         </div>
@@ -31,15 +36,19 @@ const Header = ({ontoggleCartFunction,onaddItem,oncategoryOfItems,itembutton}) =
           <h3 className="menu"> Our Menu</h3>
         </div>
         <div className="buttons">
-          {ButtonData.map((btn) => {
-             const categoryOfButton = itembutton.find(x=>x.category===btn.category);
-            return (
-              <CustomButton
-                category={btn.category}
-                oncategoryOfItems={oncategoryOfItems}
-                categoryOfButton={categoryOfButton}/>
-            );
-          })}
+          {itembutton !== null &&
+            ButtonData.map((btn) => {
+              const categoryOfButton = itembutton.find(
+                (x) => x.category === btn.category,
+              );
+              return (
+                <CustomButton
+                  category={btn.category}
+                  oncategoryOfItems={oncategoryOfItems}
+                  categoryOfButton={categoryOfButton}
+                />
+              );
+            })}
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import MainBody from "../MainBody/MainBody";
 import Footer from "../Footer/Footer";
 import Cart from "../MainBody/Cart";
-import category from "../Header/Header";
+import { ButtonCategory } from "../Header/ButtonData";
 import filteredItem from "../MainBody/MainBody";
 import categoryOfButton from "../Header/Header";
 
@@ -12,7 +12,7 @@ const Home = () => {
   const [addItem, setaddItem] = useState([]);
   const [disableItem, setdisableItem] = useState(true);
 
-  const [itembutton, setItemButton] = useState(category);
+  const [itembutton, setItemButton] = useState(ButtonCategory);
 
   useEffect(() => {}, [itembutton]);
 
@@ -42,34 +42,36 @@ const Home = () => {
       setaddItem(updatedToggleItem);
     }
   };
+
   const buttondisableItem = () => {
     setdisableItem(!disableItem);
-
-    const categoryOfItems = () => {
-      setItemButton(categoryOfButton === filteredItem);
-    };
-    return (
-      <div>
-        <Header
-          ontoggleCartFunction={toggleCartFunction}
-          onaddItem={addItem}
-          oncategoryOfItems={categoryOfItems}
-          itembutton={itembutton}
-        />
-        {cartModal && <Cart ontoggleAddItem={toggleAddItem} />}
-
-        <MainBody
-          ontoggleAddItem={toggleAddItem}
-          onaddItem={addItem}
-          ontoggleRemoveItem={toggleRemoveItem}
-          onbuttondisableItem={buttondisableItem}
-          disableItem={disableItem}
-          onitembutton={itembutton}
-        />
-        <Footer />
-      </div>
-    );
   };
+
+  const categoryOfItems = () => {
+    setItemButton(categoryOfButton === filteredItem);
+  };
+
+  return (
+    <div>
+      <Header
+        onToggleCartFunction={toggleCartFunction}
+        onaddItem={addItem}
+        oncategoryOfItems={categoryOfItems}
+        itembutton={itembutton}
+      />
+      {cartModal && <Cart ontoggleAddItem={toggleAddItem} />}
+
+      <MainBody
+        ontoggleAddItem={toggleAddItem}
+        onaddItem={addItem}
+        ontoggleRemoveItem={toggleRemoveItem}
+        onbuttondisableItem={buttondisableItem}
+        disableItem={disableItem}
+        onitembutton={itembutton}
+      />
+      <Footer />
+    </div>
+  );
 };
 
 export default Home;
