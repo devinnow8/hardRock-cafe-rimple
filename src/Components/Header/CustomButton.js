@@ -2,10 +2,17 @@ import React from "react";
 import "./Header.css";
 import "./CustomButton.css";
 
-const CustomButton = ({ category, oncategoryOfItems,categoryOfButton}) => {
+const CustomButton = ({ onItemcategory, onfilteredCategory }) => {
+  console.log(onItemcategory, "onItemcategoryonItemcategory");
   return (
     <div className="custom-btn">
-      <button type="btn btn-primary" onClick= {()=>oncategoryOfItems(categoryOfButton)} className="all-buttons" >{category} </button>
+      <button
+        type="btn btn-primary"
+        onClick={() => onfilteredCategory(onItemcategory.category)}
+        className="all-buttons"
+      >
+        {onItemcategory.category}{" "}
+      </button>
     </div>
   );
 };

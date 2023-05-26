@@ -1,16 +1,12 @@
 import React from "react";
 import CustomButton from "./CustomButton";
-import { ButtonData } from "./ButtonData";
+import { ButtonData } from "../Data/mockdata";
 import cart from "./Logo/cart.png";
 import hotellogo from "./Logo/hotel.png";
 import "./Header.css";
 
-const Header = ({
-  onToggleCartFunction,
-  onaddItem,
-  oncategoryOfItems,
-  itembutton,
-}) => {
+const Header = ({ onToggleCartFunction, onaddItem, filteredCategory }) => {
+  console.log(ButtonData, "ButtonData");
   return (
     <>
       <div className="header-container">
@@ -36,19 +32,14 @@ const Header = ({
           <h3 className="menu"> Our Menu</h3>
         </div>
         <div className="buttons">
-          {itembutton !== null &&
-            ButtonData.map((btn) => {
-              const categoryOfButton = itembutton.find(
-                (x) => x.category === btn.category,
-              );
-              return (
-                <CustomButton
-                  category={btn.category}
-                  oncategoryOfItems={oncategoryOfItems}
-                  categoryOfButton={categoryOfButton}
-                />
-              );
-            })}
+          {ButtonData.map((Itemcategory) => {
+            return (
+              <CustomButton
+                onItemcategory={Itemcategory}
+                onfilteredCategory={filteredCategory}
+              />
+            );
+          })}
         </div>
       </div>
     </>
