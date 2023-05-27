@@ -1,6 +1,6 @@
 import React from "react";
 import TitleHead from "./TitleHead";
-import TitleData from "./TitleData";
+import {TitleData} from "../Data/Data.js";
 
 const MainBody = () => {
   return (

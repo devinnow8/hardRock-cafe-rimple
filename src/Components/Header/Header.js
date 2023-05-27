@@ -1,6 +1,6 @@
 import React from "react";
 import CustomButton from "./CustomButton";
-import ButtonData from "./ButtonData";
+import {ButtonData} from "../Data/Data";
 import cart from "./Logo/cart.png";
 import hotellogo from "./Logo/hotel.png";
 import "./Header.css";
