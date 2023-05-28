@@ -1,41 +1,41 @@
 .buttons {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .logo-name,
 .menu {
-	display: flex;
-	justify-content: space-evenly;
-	color: brown;
+  display: flex;
+  justify-content: space-evenly;
+  color: brown;
 }
 
 .hotel-img {
-	height: 80px;
+  height: 80px;
 }
 .cart-image {
-	height: 50px;
-	position: absolute;
+  height: 50px;
+  position: absolute;
 }
 .menu-container {
-	padding-top: 0;
-	padding-bottom: 40px;
+  padding-top: 0;
+  padding-bottom: 40px;
 }
 .number {
-	background-color: rgb(246, 17, 17);
-	border: 2px solid blueviolet;
-	border-radius: 80%;
-	color: white;
-	position: sticky;
-	padding: 2px;
-	width: 10px;
+  background-color: rgb(246, 17, 17);
+  border: 2px solid blueviolet;
+  border-radius: 80%;
+  color: white;
+  position: sticky;
+  padding: 2px;
+  width: 10px;
 }
 .cart {
-	padding-right: 42px;
-	cursor: pointer;
+  padding-right: 42px;
+  cursor: pointer;
 }
 
 .custom-btn {
-	margin-right: 10px;
+  margin-right: 10px;
 }
