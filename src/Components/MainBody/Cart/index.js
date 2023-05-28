@@ -35,7 +35,9 @@ const Cart = ({ selectedItems, onToggleRemoveItem, onToggleCart, onToggleAddItem
 								<div className="item-details">
 									<h3>{item.title}</h3>
 									<p>${item.price}</p>
+									<h6> Quantity : {item.count} x {item.price} </h6>
 									<button onClick={() => onToggleRemoveItem(item)}>Delete</button>
+									
 								</div>
 							</div>
 						))}
