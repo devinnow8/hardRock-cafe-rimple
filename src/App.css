@@ -27,3 +27,6 @@
 button {
   cursor: pointer;
 }
+img:hover{
+  transform: scaleX(-1);
+}

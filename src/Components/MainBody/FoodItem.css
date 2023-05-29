@@ -28,3 +28,13 @@
   border: 2px solid brown;
   color: brown;
 }
+.add-to-cart:hover{
+  background-color: brown;
+color: white}
+
+.add-item:hover {
+background-color: brown;
+color: white
+}
+
+

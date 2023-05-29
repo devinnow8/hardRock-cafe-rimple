@@ -12,41 +12,41 @@ const Home = () => {
   const [category, setCategory] = useState(defaultCategory); // category wise Button
   const [foodItems, setFoodItems] = useState([]);
 
-  // useEffect(() => {
-  //   if (category === "All") {
-  //     fetch("https://fakestoreapi.com/products") // change API URL here
-  //       .then((result) => {
-  //         return result.json();
-  //       })
-  //       .then((res) => setFoodItems(res))
-  //       .catch((error) => {
-  //         console.log("error", error);
-  //       });
-  //   } else {
-  //     fetch("https://fakestoreapi.com/products") // change API URL here
-  //       .then((result) => {
-  //         return result.json();
-  //       })
-  //       .then((res) => {
-  //         const items = res.filter(
-  //           (item) => item.category === category
-  //         );
-  //         setFoodItems(items);
-  //       })
-  //       .catch((error) => {
-  //         console.log("error", error);
-  //       });
-  //   }
-  // }, [category]);
-
   useEffect(() => {
     if (category === "All") {
-      setFoodItems(FoodItemData);
+      fetch("http://192.168.1.204:8000/list/ ") // API 
+        .then((result) => {
+          return result.json();
+        })
+        .then((res) => setFoodItems(res))
+        .catch((error) => {
+          console.log("error", error);
+        });
     } else {
-      const items = FoodItemData.filter((item) => item.category === category);
-      setFoodItems(items);
+      fetch("http://192.168.1.204:8000/list/") // filtering according to category
+        .then((result) => {
+          return result.json();
+        })
+        .then((res) => {
+          const items = res.filter(
+            (item) => item.category === category
+          );
+          setFoodItems(items);
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
     }
   }, [category]);
+
+  // useEffect(() => {
+  //   if (category === "All") {
+  //     setFoodItems(FoodItemData);
+  //   } else {
+  //     const items = FoodItemData.filter((item) => item.category === category);
+  //     setFoodItems(items);
+  //   }
+  // }, [category]);
 
   // Modal Function
   const toggleCartFunction = () => {
@@ -60,8 +60,7 @@ const Home = () => {
     );
     if (indexOfitem !== -1) {
       const updatedToggleItem = [...selectedItems];
-      updatedToggleItem[indexOfitem]["count"] =
-        updatedToggleItem[indexOfitem].count + 1;
+        updatedToggleItem[indexOfitem].count += 1;
       setSelectedItems(updatedToggleItem);
     } else {
       setSelectedItems((prev) => [...prev, { ...item, count: 1 }]);
@@ -110,6 +109,7 @@ const Home = () => {
           onToggleCart={toggleCartFunction}
           onClearCart={handleClearCart}
           onCheckout={handleCheckout}
+          toggleAddItem={toggleAddItem}
         />
       )}
 

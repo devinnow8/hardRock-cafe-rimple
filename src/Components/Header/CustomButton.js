@@ -18,7 +18,7 @@ const CustomButton = ({ selectedCategory, onItemcategory, onfilteredCategory }) 
 						: {}
 				}
 			>
-				{onItemcategory.category}{" "}
+				{onItemcategory.title}{" "}
 			</button>
 		</div>
 	);

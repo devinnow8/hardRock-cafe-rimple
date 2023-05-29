@@ -5,11 +5,10 @@ const FoodItem = ({
   image,
   title,
   onToggleAddItem,
-  index,
   onfoodItem,
   item,
   onToggleRemoveItem,
-  onbuttondisableItem,
+  description,
 }) => {
   return (
     <div className="single-card">
@@ -30,11 +29,13 @@ const FoodItem = ({
         <hr style={{ width: "100%" }} />
         <span>
           <h5>
-            Enriched bleached flour (wheat flour, malted barley flour, niacin,
+            {/* Enriched bleached flour (wheat flour, malted barley flour, niacin,
             reduced iron, thiamin mononitrate, riboflavin, folic acid), sugar,
             dextrose, leavening (baking soda, sodium aluminum phosphate,
             monocalcium phosphate), food starch-modified, salt, soybean oil, egg
-            whites, buttermilk.
+            whites, buttermilk. */}
+
+            {description}
           </h5>{" "}
         </span>
         <span className="add-moreitems">

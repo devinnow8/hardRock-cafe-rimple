@@ -8,6 +8,7 @@ const Cart = ({
   onToggleCart,
   onClearCart,
   onCheckout,
+  toggleAddItem,
 }) => {
   const calculateTotal = () => {
     let total = 0;
@@ -31,7 +32,7 @@ const Cart = ({
               <img className="cart2" src={cart} alt="" />
             </span>
             <span className="card-items">
-              <h5>{selectedItems.length}</h5> Items - ${calculateTotal()}
+              <h5>{selectedItems.length}</h5> Items - ₹{calculateTotal()}
             </span>
           </div>
           <div className="cart-items">
@@ -40,12 +41,22 @@ const Cart = ({
                 <img src={item.image} alt={item.title} />
                 <div className="item-details">
                   <h3>{item.title}</h3>
-                  <p>${item.price}</p>
+                  <p>₹{item.price}</p>
                   <h6>
                     {" "}
-                    Quantity : {item.count} x {item.price}{" "}
+                    Quantity : {item.count}{" "}
+                    <span>
+                      {" "}
+                      <button onClick={() => toggleAddItem(item)}>
+                        +
+                      </button>{" "}
+                      <button onClick={() => onToggleRemoveItem(item)}>
+                        -
+                      </button>
+                    </span>{" "}
+                    x {item.price}= {item.count * item.price}
                   </h6>
-                  <button onClick={() => onToggleRemoveItem(item)}>
+                  <button onClick={() => onToggleRemoveItem(item, true)}>
                     Delete
                   </button>
                 </div>
@@ -53,7 +64,7 @@ const Cart = ({
             ))}
           </div>
           <div className="cart-footer">
-            <h4>Total: ${calculateTotal()}</h4>
+            <h4>Total: ₹{calculateTotal()}</h4>
             <div className="buttons">
               <button onClick={onClearCart}>Clear Cart</button>
               <button onClick={onCheckout}>Checkout</button>

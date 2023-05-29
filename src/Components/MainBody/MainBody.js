@@ -19,6 +19,7 @@ const MainBody = ({
             index={index}
             image={item.image}
             title={item.title}
+            description={item.description}
             onToggleRemoveItem={onToggleRemoveItem}
           />
         );
