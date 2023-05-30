@@ -4,6 +4,8 @@ import Footer from "../Footer/Footer";
 import { default as Header } from "../Header/Header";
 import Cart from "../MainBody/Cart";
 import { default as MainBody } from "../MainBody/MainBody";
+// import { getData } from "../API data";
+import { getAllCards } from "../API";
 
 const defaultCategory = ButtonData[0].category;
 const Home = () => {
@@ -14,23 +16,26 @@ const Home = () => {
 
   useEffect(() => {
     if (category === "All") {
-      fetch("http://192.168.1.204:8000/list/ ") // API 
-        .then((result) => {
-          return result.json();
+      getAllCards()
+        .then((res) => {
+          setFoodItems(res.data);
         })
-        .then((res) => setFoodItems(res))
-        .catch((error) => {
-          console.log("error", error);
-        });
+        .catch((error) => console.log(error));
+      // fetch("http://192.168.1.204:8000/list/ ") // API
+      //   .then((result) => {
+      //     return result.json();
+      //   })
+      //   .then((res) => setFoodItems(res))
+      //   .catch((error) => {
+      //     console.log("error", error);
+      //   });
     } else {
       fetch("http://192.168.1.204:8000/list/") // filtering according to category
         .then((result) => {
           return result.json();
         })
         .then((res) => {
-          const items = res.filter(
-            (item) => item.category === category
-          );
+          const items = res.filter((item) => item.category === category);
           setFoodItems(items);
         })
         .catch((error) => {
@@ -56,11 +61,11 @@ const Home = () => {
   // Add(+) button function
   const toggleAddItem = (item) => {
     const indexOfitem = selectedItems.findIndex(
-      (oldItem) => oldItem.id === item.id
+      (oldItem) => oldItem.id === item.id,
     );
     if (indexOfitem !== -1) {
       const updatedToggleItem = [...selectedItems];
-        updatedToggleItem[indexOfitem].count += 1;
+      updatedToggleItem[indexOfitem].count += 1;
       setSelectedItems(updatedToggleItem);
     } else {
       setSelectedItems((prev) => [...prev, { ...item, count: 1 }]);

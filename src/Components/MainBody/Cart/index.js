@@ -12,7 +12,7 @@ const Cart = ({
 }) => {
   const calculateTotal = () => {
     let total = 0;
-    selectedItems.forEach((item) => {
+    selectedItems.forEach(item => {
       total += item.price * item.count;
     });
     return total;
