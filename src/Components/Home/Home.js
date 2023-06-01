@@ -5,14 +5,15 @@ import { default as Header } from "../Header/Header";
 import Cart from "../MainBody/Cart";
 import { default as MainBody } from "../MainBody/MainBody";
 // import { getData } from "../API data";
-import { getAllCards } from "../API";
+import { getAllCards,viewCart,addItemInCart,deleteItemInCart,UpdatedItemInCart} from "../API";
+import axios from "axios";
 
 const defaultCategory = ButtonData[0].category;
 const Home = () => {
   const [cartModal, setCartModal] = useState(false); // for Modal state
   const [selectedItems, setSelectedItems] = useState([]); // for (+) and (-) button state
-  const [category, setCategory] = useState(defaultCategory); // category wise Button
-  const [foodItems, setFoodItems] = useState([]);
+  const [category, setCategory] = useState(defaultCategory); // category wise Button // Done  
+  const [foodItems, setFoodItems] = useState([]); // Done
 
   useEffect(() => {
     if (category === "All") {
@@ -30,12 +31,11 @@ const Home = () => {
       //     console.log("error", error);
       //   });
     } else {
-      fetch("http://192.168.1.204:8000/list/") // filtering according to category
-        .then((result) => {
-          return result.json();
-        })
-        .then((res) => {
-          const items = res.filter((item) => item.category === category);
+       // filtering according to category
+       getAllCards()
+         .then((res) => {
+          const result= res.data
+          const items = result.filter((item) => item.category === category);
           setFoodItems(items);
         })
         .catch((error) => {
@@ -44,15 +44,7 @@ const Home = () => {
     }
   }, [category]);
 
-  // useEffect(() => {
-  //   if (category === "All") {
-  //     setFoodItems(FoodItemData);
-  //   } else {
-  //     const items = FoodItemData.filter((item) => item.category === category);
-  //     setFoodItems(items);
-  //   }
-  // }, [category]);
-
+  
   // Modal Function
   const toggleCartFunction = () => {
     setCartModal(!cartModal);
@@ -60,8 +52,7 @@ const Home = () => {
 
   // Add(+) button function
   const toggleAddItem = (item) => {
-    const indexOfitem = selectedItems.findIndex(
-      (oldItem) => oldItem.id === item.id,
+    const indexOfitem = selectedItems.findIndex((oldItem) => oldItem.id === item.id,
     );
     if (indexOfitem !== -1) {
       const updatedToggleItem = [...selectedItems];
@@ -115,6 +106,7 @@ const Home = () => {
           onClearCart={handleClearCart}
           onCheckout={handleCheckout}
           toggleAddItem={toggleAddItem}
+         
         />
       )}
 

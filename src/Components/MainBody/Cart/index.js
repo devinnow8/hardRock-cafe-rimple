@@ -9,6 +9,7 @@ const Cart = ({
   onClearCart,
   onCheckout,
   toggleAddItem,
+  
 }) => {
   const calculateTotal = () => {
     let total = 0;
@@ -56,7 +57,7 @@ const Cart = ({
                     </span>{" "}
                     x {item.price}= {item.count * item.price}
                   </h6>
-                  <button onClick={() => onToggleRemoveItem(item, true)}>
+                  <button onClick={() => onToggleRemoveItem(item,true)}>
                     Delete
                   </button>
                 </div>

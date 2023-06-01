@@ -37,4 +37,6 @@ background-color: brown;
 color: white
 }
 
-
+.food-picture:hover{
+  transform: scaleX(-1);
+}
