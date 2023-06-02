@@ -5,16 +5,23 @@ import { default as Header } from "../Header/Header";
 import Cart from "../MainBody/Cart";
 import { default as MainBody } from "../MainBody/MainBody";
 // import { getData } from "../API data";
+import userDetail from "./Userinformation/userInformation";
 import { getAllCards,viewCart,addItemInCart,deleteItemInCart,UpdatedItemInCart} from "../API";
 import axios from "axios";
 
 const defaultCategory = ButtonData[0].category;
 const Home = () => {
+  const [userInformation, setUserInformation]= useState([]);// for user Information 
   const [cartModal, setCartModal] = useState(false); // for Modal state
   const [selectedItems, setSelectedItems] = useState([]); // for (+) and (-) button state
-  const [category, setCategory] = useState(defaultCategory); // category wise Button // Done  
-  const [foodItems, setFoodItems] = useState([]); // Done
+  const [category, setCategory] = useState(defaultCategory); // category wise Button
+  const [foodItems, setFoodItems] = useState([]);// category wise Food Items
 
+const userFunction=(event)=>{
+ setUserInformation({value:event.target.value})
+}
+
+if(userFunction)
   useEffect(() => {
     if (category === "All") {
       getAllCards()
@@ -22,16 +29,9 @@ const Home = () => {
           setFoodItems(res.data);
         })
         .catch((error) => console.log(error));
-      // fetch("http://192.168.1.204:8000/list/ ") // API
-      //   .then((result) => {
-      //     return result.json();
-      //   })
-      //   .then((res) => setFoodItems(res))
-      //   .catch((error) => {
-      //     console.log("error", error);
-      //   });
+     
     } else {
-       // filtering according to category
+ 
        getAllCards()
          .then((res) => {
           const result= res.data
@@ -47,12 +47,25 @@ const Home = () => {
   
   // Modal Function
   const toggleCartFunction = () => {
-    setCartModal(!cartModal);
-  };
+  setCartModal(!cartModal)}
+   useEffect(()=>{
+    if(!cartModal){
+         viewCart()
+    .then((res=>{
+      setCartModal(res.data)
+     
+    }))
+    .catch((error) => {
+      console.log("error", error);
+    })} 
 
-  // Add(+) button function
+  },[cartModal]);
+
+ 
+// Add(+) button function
   const toggleAddItem = (item) => {
-    const indexOfitem = selectedItems.findIndex((oldItem) => oldItem.id === item.id,
+    const indexOfitem = selectedItems.findIndex(
+      (oldItem) => oldItem.id === item.id,
     );
     if (indexOfitem !== -1) {
       const updatedToggleItem = [...selectedItems];
@@ -92,12 +105,16 @@ const Home = () => {
 
   return (
     <div>
-      <Header
+      <userDetail 
+      userFunction={userFunction} userInformation={userInformation}/>
+
+     {userInformation &&(
+       <Header
         onToggleCartFunction={toggleCartFunction} //cart
         selectedItems={selectedItems} // adding number in cart
         filteredCategory={filteredCategory} //function for category of Buttons
         selectedCategory={category}
-      />
+      /> )}
       {cartModal && (
         <Cart
           selectedItems={selectedItems}
