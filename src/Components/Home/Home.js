@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { ButtonData, FoodItemData } from "../Data/mockdata";
+import { ButtonData} from "../Data/mockdata";
 import Footer from "../Footer/Footer";
 import { default as Header } from "../Header/Header";
 import Cart from "../MainBody/Cart";
 import { default as MainBody } from "../MainBody/MainBody";
 // import { getData } from "../API data";
-import userDetail from "./Userinformation/userInformation";
-import { getAllCards,viewCart,addItemInCart,deleteItemInCart,UpdatedItemInCart} from "../API";
-import axios from "axios";
+import { getAllCards,viewCart} from "../API";
+import SignUp from "./Userinformation/userInformation";
+import SignIn from "./Userinformation/SignIn";
 
 const defaultCategory = ButtonData[0].category;
+
 const Home = () => {
-  const [userInformation, setUserInformation]= useState([]);// for user Information 
-  const [cartModal, setCartModal] = useState(false); // for Modal state
-  const [selectedItems, setSelectedItems] = useState([]); // for (+) and (-) button state
-  const [category, setCategory] = useState(defaultCategory); // category wise Button
-  const [foodItems, setFoodItems] = useState([]);// category wise Food Items
+const [cartModal, setCartModal] = useState(false); // for Modal state
+const [selectedItems, setSelectedItems] = useState([]); // for (+) and (-) button state
+const [category, setCategory] = useState(defaultCategory); // category wise Button
+const [foodItems, setFoodItems] = useState([]);// category wise Food Items
 
-const userFunction=(event)=>{
- setUserInformation({value:event.target.value})
-}
-
-if(userFunction)
-  useEffect(() => {
+ useEffect(() => {
     if (category === "All") {
       getAllCards()
         .then((res) => {
@@ -105,16 +100,16 @@ if(userFunction)
 
   return (
     <div>
-      <userDetail 
-      userFunction={userFunction} userInformation={userInformation}/>
-
-     {userInformation &&(
-       <Header
+       <SignUp/> 
+       <SignIn/> 
+     
+      <Header
         onToggleCartFunction={toggleCartFunction} //cart
         selectedItems={selectedItems} // adding number in cart
         filteredCategory={filteredCategory} //function for category of Buttons
         selectedCategory={category}
-      /> )}
+      /> 
+
       {cartModal && (
         <Cart
           selectedItems={selectedItems}
@@ -132,10 +127,13 @@ if(userFunction)
         selectedItems={selectedItems}
         onToggleRemoveItem={toggleRemoveItem}
         foodItems={foodItems}
-      />
+      /> 
+
+     
       <Footer />
     </div>
   );
-};
+}
+;
 
 export default Home;

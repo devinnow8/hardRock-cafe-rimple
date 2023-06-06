@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 
 const url = "http://192.168.1.204:8000/list/";
@@ -54,3 +54,7 @@ export const UpdatedItemInCart = async () => {
     return error;
   }
 };
+
+
+
+
