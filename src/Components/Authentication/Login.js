@@ -1,58 +1,53 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../Routes";
+import { showErrorToast, showSuccessToast } from "../Toastify/Toastify";
 
-const SignIn = () => {
-  const [userData, setUserData] = useState({ Email: "", Password: "" });
-  const notify = () => toast("Login successful");
+const Login = () => {
+	const [userData, setUserData] = useState({ Email: "", Password: "" });
+	const context = useContext(AuthContext);
+	const history = useHistory();
 
-  const dataOnChange = (event) => {
-    console.log("events", event.target.value);
-    const name = event.target.name;
-    const value = event.target.value;
-    setUserData({ ...userData, [name]: value });
-  };
-  console.log(userData, "userdatata");
+	const dataOnChange = (event) => {
+		const { name, value } = event.target;
+		setUserData({ ...userData, [name]: value });
+	};
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://192.168.1.204:8000/signin/",
-        userData
-      );
-      console.log("SignIn successful!", response.data);
-    } catch (error) {
-      console.error("SignIn failed!", error);
-    }
-  };
-  return (
-    <div>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          name="userName"
-          type="text"
-          id="username"
-          onChange={(e) => dataOnChange(e)}
-          required
-        />
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		try {
+			// const response = await axios.post("http://192.168.1.204:8000/signin/", userData);
+			context.toggleAuth();
+			// localStorage.setItem("accessToken", response.data.accessToken)
+			// localStorage.setItem("refreshToken", response.data.refreshToken)
+			history.push("/home");
+			showSuccessToast("Login Successful!");
+			console.log("Login successful!");
+		} catch (error) {
+			showErrorToast("Login failed");
+		}
+	};
 
-        <label htmlFor="password">Password:</label>
-        <input
-          name="password"
-          type="password"
-          id="password"
-          onChange={(e) => dataOnChange(e)}
-          required
-        />
-        <button type="submit" onClick={notify}>
-          login
-        </button>
-      </form>
-    </div>
-  );
+	const toggleRegister = () => {
+		history.push("/register");
+	};
+
+	return (
+		<div>
+			<h1>Sign In</h1>
+			<form onSubmit={handleSubmit}>
+				<label htmlFor="username">Username:</label>
+				<input name="userName" type="text" id="username" onChange={(e) => dataOnChange(e)} required />
+
+				<label htmlFor="password">Password:</label>
+				<input name="password" type="password" id="password" onChange={(e) => dataOnChange(e)} required />
+				<button type="submit">login</button>
+			</form>
+			<p>New User? Create an account</p>
+			<button type="submit" onClick={toggleRegister}>
+				Register
+			</button>
+		</div>
+	);
 };
-export default SignIn;
+export default Login;

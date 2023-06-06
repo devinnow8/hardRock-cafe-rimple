@@ -1,60 +1,65 @@
-import React from "react";
 import axios from "axios";
 
-const url = "http://192.168.1.204:8000/list/";
+// Retrieve token from localStorage
+const token = localStorage.getItem("accessToken");
+
+// Set the token in headers
+const config = {
+	headers: {
+		Authorization: `Bearer ${token}`,
+	},
+};
+
 export const getAllCards = async () => {
-  try {
-   
-    const data = await axios.get(url).then((res) => res);
-    return data;
-  } catch (error) {
-    return error;
-  }
+	try {
+		const url = "http://192.168.1.204:8000/list/";
+		const response = await axios.get(url, config);
+		return response.data;
+	} catch (error) {
+		return error;
+	}
 };
 
+const viewCartAPI = "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/";
 
-const viewCartAPI= "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/"
 export const viewCart = async () => {
-  try {
-   const data = await axios.get(viewCartAPI).then((res) => res);
-    return data;
-  } catch (error) {
-    return error;
-  }
+	try {
+		const response = await axios.get(viewCartAPI, config);
+		return response.data;
+	} catch (error) {
+		return error;
+	}
 };
 
-const addAPI= "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/items/";
+const addAPI = "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/items/";
 
-export const addItemInCart = async () => {
-    try {
-     const data = await axios.get(addAPI).then((res) => res);
-      return data;
-    } catch (error) {
-      return error;
-    }
-  };
+export const addItemInCart = async (payload) => {
+	try {
+		const response = await axios.post(addAPI, payload, config);
+		return response.data;
+	} catch (error) {
+		return error;
+	}
+};
 
-const deleteAPI= "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/items/{item-id}/"
+const deleteAPI = "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/items/{item-id}/";
+
 export const deleteItemInCart = async () => {
-  try {
-   const data = await axios.get(deleteAPI).then((res) => res);
-    return data;
-  } catch (error) {
-    return error;
-  }
+	try {
+		const response = await axios.delete(deleteAPI, config);
+		return response.data;
+	} catch (error) {
+		return error;
+	}
 };
 
+const updateAPI = "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/items/";
 
-const updateAPI= "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/items/"
-export const UpdatedItemInCart = async () => {
-  try {
-   const data = await axios.get(updateAPI).then((res) => res);
-    return data;
-  } catch (error) {
-    return error;
-  }
+export const updatedItemInCart = async () => {
+	try {
+		const response = await axios.put(updateAPI, config);
+		return response.data;
+	} catch (error) {
+		return error;
+	}
 };
-
-
-
-
