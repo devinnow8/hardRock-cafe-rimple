@@ -1,17 +1,36 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Home from "../Components/Home/Home";
-import SignIn from "../Components/AUth/SignIn";
 
-const Routes = () => {
+const App = () => {
+  const isAuthenticated = true;
+
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={SignIn} />
-        {/* <Route exact path="/signup" component={SignUp} /> */}
-        <Route path="/home" component={Home} />
+        {/* <Route exact path="/" component={SignIn} />
+        <Route exact path="/signup" component={} /> */}
+        <PrivateRoute
+          path="/home"
+          component={Home}
+          isAuthenticated={isAuthenticated}
+        />
       </Switch>
     </Router>
   );
 };
 
-export default Routes;
+const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      isAuthenticated ? <Component {...props} /> : <Redirect to="/signin" />
+    }
+  />
+);
+
+export default App;
