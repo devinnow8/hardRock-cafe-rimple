@@ -1,35 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { ButtonData} from "../Data/mockdata";
+import { ButtonData } from "../Data/mockdata";
 import Footer from "../Footer/Footer";
 import { default as Header } from "../Header/Header";
 import Cart from "../MainBody/Cart";
 import { default as MainBody } from "../MainBody/MainBody";
 // import { getData } from "../API data";
-import { getAllCards,viewCart} from "../API";
-import SignUp from "./Userinformation/userInformation";
-import SignIn from "./Userinformation/SignIn";
+import { getAllCards, viewCart } from "../API";
 
 const defaultCategory = ButtonData[0].category;
 
 const Home = () => {
-const [cartModal, setCartModal] = useState(false); // for Modal state
-const [selectedItems, setSelectedItems] = useState([]); // for (+) and (-) button state
-const [category, setCategory] = useState(defaultCategory); // category wise Button
-const [foodItems, setFoodItems] = useState([]);// category wise Food Items
+  const [cartModal, setCartModal] = useState(false); // for Modal state
+  const [selectedItems, setSelectedItems] = useState([]); // for (+) and (-) button state
+  const [category, setCategory] = useState(defaultCategory); // category wise Button
+  const [foodItems, setFoodItems] = useState([]); // category wise Food Items
 
- useEffect(() => {
+  useEffect(() => {
     if (category === "All") {
       getAllCards()
         .then((res) => {
           setFoodItems(res.data);
         })
         .catch((error) => console.log(error));
-     
     } else {
- 
-       getAllCards()
-         .then((res) => {
-          const result= res.data
+      getAllCards()
+        .then((res) => {
+          const result = res.data;
           const items = result.filter((item) => item.category === category);
           setFoodItems(items);
         })
@@ -39,28 +35,26 @@ const [foodItems, setFoodItems] = useState([]);// category wise Food Items
     }
   }, [category]);
 
-  
   // Modal Function
   const toggleCartFunction = () => {
-  setCartModal(!cartModal)}
-   useEffect(()=>{
-    if(!cartModal){
-         viewCart()
-    .then((res=>{
-      setCartModal(res.data)
-     
-    }))
-    .catch((error) => {
-      console.log("error", error);
-    })} 
+    setCartModal(!cartModal);
+  };
+  useEffect(() => {
+    if (!cartModal) {
+      viewCart()
+        .then((res) => {
+          setCartModal(res.data);
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    }
+  }, [cartModal]);
 
-  },[cartModal]);
-
- 
-// Add(+) button function
+  // Add(+) button function
   const toggleAddItem = (item) => {
     const indexOfitem = selectedItems.findIndex(
-      (oldItem) => oldItem.id === item.id,
+      (oldItem) => oldItem.id === item.id
     );
     if (indexOfitem !== -1) {
       const updatedToggleItem = [...selectedItems];
@@ -100,15 +94,12 @@ const [foodItems, setFoodItems] = useState([]);// category wise Food Items
 
   return (
     <div>
-       <SignUp/> 
-       <SignIn/> 
-     
       <Header
         onToggleCartFunction={toggleCartFunction} //cart
         selectedItems={selectedItems} // adding number in cart
         filteredCategory={filteredCategory} //function for category of Buttons
         selectedCategory={category}
-      /> 
+      />
 
       {cartModal && (
         <Cart
@@ -118,7 +109,6 @@ const [foodItems, setFoodItems] = useState([]);// category wise Food Items
           onClearCart={handleClearCart}
           onCheckout={handleCheckout}
           toggleAddItem={toggleAddItem}
-         
         />
       )}
 
@@ -127,13 +117,10 @@ const [foodItems, setFoodItems] = useState([]);// category wise Food Items
         selectedItems={selectedItems}
         onToggleRemoveItem={toggleRemoveItem}
         foodItems={foodItems}
-      /> 
+      />
 
-     
       <Footer />
     </div>
   );
-}
-;
-
+};
 export default Home;
