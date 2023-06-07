@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import { default as Header } from "../Header/Header";
 import Cart from "../MainBody/Cart";
 import { default as MainBody } from "../MainBody/MainBody";
-import { getAllCards, viewCart } from "../API";
+import { addItemInCart, getAllCards, viewCart, updatedItemInCart } from "../API";
 
 const defaultCategory = ButtonData[0].category;
 
@@ -51,29 +51,36 @@ const Home = ({ handleRefreshToken, handleLogout }) => {
   // Modal Function
   const toggleCartFunction = () => {
     viewCart()
-    .then((res)=>{ 
-     setCartModal(res)
-    }) 
-    .catch((error) => {
-              console.log("error", error);
-            });
+      .then((res) => {
+        setCartModal(true);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
-
-
 
   // Add(+) button function
   const toggleAddItem = (item) => {
-    const indexOfitem = selectedItems.findIndex(
-      (oldItem) => oldItem.id === item.id,
-    );
-    if (indexOfitem !== -1) {
-      const updatedToggleItem = [...selectedItems];
-      updatedToggleItem[indexOfitem].count += 1;
-      setSelectedItems(updatedToggleItem);
-      viewCart(updatedToggleItem);
-    } else {
-      setSelectedItems((prev) => [...prev, { ...item, count: 1 }]);
-    }
+        const indexOfitem = selectedItems.findIndex(
+          (oldItem) => oldItem.id === item.id
+        );
+        if (indexOfitem !== -1) {
+          updatedItemInCart().then((res) => {
+            if (res) {
+              const updatedToggleItem = [...selectedItems];
+              updatedToggleItem[indexOfitem].count += 1;
+              setSelectedItems(updatedToggleItem);
+              viewCart(updatedToggleItem);
+            }})
+         
+        } else {
+          addItemInCart().then((res) => {
+            if(res){
+              setSelectedItems((prev) => [...prev, { ...item, count: 1 }]);
+            }
+          })
+        }
+      }
   };
 
   // Remove (-) button Function
