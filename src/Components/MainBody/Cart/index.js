@@ -1,6 +1,8 @@
 import React from "react";
 import cart from "../../Header/Logo/cart.png";
 import "./index.css";
+// import { viewCart } from "../../API";
+
 
 const Cart = ({
   selectedItems,
@@ -22,7 +24,7 @@ const Cart = ({
   return (
     <div className="cart-modal">
       <div className="cart-modal-dialog">
-        <div className="close-button" onClick={onToggleCart}>
+        <div className="close-button" onClick={()=> onToggleCart}>
           x
         </div>
         <div className="cart-modal-body">

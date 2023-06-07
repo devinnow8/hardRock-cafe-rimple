@@ -7,10 +7,12 @@ const MainBody = ({
   onToggleRemoveItem,
   foodItems,
 }) => {
+  console.log("foodItems", foodItems);
   return (
     <div className="fooditem-container">
-      {foodItems.map((item, index) => {
+      {foodItems?.map((item, index) => {
         const foodItems = selectedItems.find((x) => x.id === item.id);
+
         return (
           <FoodItem
             onToggleAddItem={onToggleAddItem}
