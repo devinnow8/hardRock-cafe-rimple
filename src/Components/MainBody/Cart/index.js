@@ -24,7 +24,7 @@ const Cart = ({
   return (
     <div className="cart-modal">
       <div className="cart-modal-dialog">
-        <div className="close-button" onClick={()=> onToggleCart}>
+        <div className="close-button" onClick={()=> onToggleCart()}>
           x
         </div>
         <div className="cart-modal-body">

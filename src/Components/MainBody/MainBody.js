@@ -17,7 +17,7 @@ const MainBody = ({
           <FoodItem
             onToggleAddItem={onToggleAddItem}
             item={item}
-            onfoodItem={foodItems}
+            onfoodItem={item}
             index={index}
             image={item.image}
             title={item.title}

@@ -23,7 +23,7 @@ export const getAllCards = async () => {
 
 export const viewCart = async () => {
   const viewCartAPI =
-    "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/";
+    "http://192.168.1.204:8000/cart/carts/f7d80dd5845124a551d73857a573e677b43fd0ed/";
   try {
     const response = await axios.get(viewCartAPI, config);
     console.log("response>>>", response)
@@ -35,7 +35,7 @@ export const viewCart = async () => {
 
 export const addItemInCart = async (payload) => {
   const addAPI =
-    "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/items/";
+  "http://192.168.1.204:8000/user/ea70320a-88c1-475a-bd56-4b24c0b76ea2/items/"
   try {
     const response = await axios.post(addAPI, payload, config);
     return response.data;
@@ -44,9 +44,8 @@ export const addItemInCart = async (payload) => {
   }
 };
 
-export const deleteItemInCart = async () => {
-  const deleteAPI =
-    "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/items/{item-id}/";
+export const deleteItemCart = async (id) => {
+  const deleteAPI =`http://192.168.1.204:8000/user/f7d80dd5845124a551d73857a573e677b43fd0ed/items/${id}`;
   try {
     const response = await axios.delete(deleteAPI, config);
     return response.data;
@@ -55,11 +54,11 @@ export const deleteItemInCart = async () => {
   }
 };
 
-export const updatedItemInCart = async () => {
+export const updatedItemInCart = async (body) => {
   const updateAPI =
-    "http://192.168.1.204:8000/cart/carts/aca5c83f-1b68-4149-b8a6-1c6b7f2ef062/items/";
+    "http://192.168.1.204:8000/user/ea70320a-88c1-475a-bd56-4b24c0b76ea2/items/";
   try {
-    const response = await axios.put(updateAPI, config);
+    const response = await axios.put(updateAPI, body, config);
     return response.data;
   } catch (error) {
     return error;
