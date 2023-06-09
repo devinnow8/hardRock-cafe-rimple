@@ -12,7 +12,7 @@ const Home = ({ handleRefreshToken, handleLogout }) => {
   const [cartModal, setCartModal] = useState(false); // for Modal state
   const [selectedItems, setSelectedItems] = useState([]); // for (+) and (-) button state
   const [category, setCategory] = useState(defaultCategory); // category wise Button
-  const [foodItems, setFoodItems] = useState([]); // category wise Food Items
+  const [foodItemsData, setFoodItems] = useState([]); // category wise Food Items
 
   useEffect(() => {
     if (category === "All") {
@@ -45,7 +45,7 @@ const Home = ({ handleRefreshToken, handleLogout }) => {
             console.error("Request failed!", error);
           }
         });
-    }
+      }
   }, [category]);
 
   // Modal Function
@@ -81,7 +81,7 @@ const Home = ({ handleRefreshToken, handleLogout }) => {
           })
         }
       }
-  };
+
 
   // Remove (-) button Function
   const toggleRemoveItem = (item, isRemove = false) => {
@@ -134,11 +134,12 @@ const Home = ({ handleRefreshToken, handleLogout }) => {
         onToggleAddItem={toggleAddItem}
         selectedItems={selectedItems}
         onToggleRemoveItem={toggleRemoveItem}
-        foodItems={foodItems}
+        foodItemsData={foodItemsData}
       />
 
       <Footer />
     </div>
   );
-};
+      
+    }
 export default Home;

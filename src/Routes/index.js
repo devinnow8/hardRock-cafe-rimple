@@ -21,7 +21,9 @@ const Routes = () => {
 		try {
 			const response = await axios.post("http://192.168.1.204:8000/refresh-token", {
 				refreshToken: localStorage.getItem("refreshToken"),
+				
 			});
+			console.log(response)
 			const { accessToken } = response.data;
 
 			// Update the access token in local storage
@@ -45,7 +47,7 @@ const Routes = () => {
 		<AuthContext.Provider value={{ isAuthenticated, toggleAuth }}>
 			<Router>
 				<Switch>
-					<Route exact path="/" component={Login} />
+					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<PrivateRoute
 						path="/home"

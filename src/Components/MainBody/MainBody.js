@@ -5,12 +5,12 @@ const MainBody = ({
   onToggleAddItem,
   selectedItems,
   onToggleRemoveItem,
-  foodItems,
+  foodItemsData,
 }) => {
-  console.log("foodItems", foodItems);
+ 
   return (
     <div className="fooditem-container">
-      {foodItems?.map((item, index) => {
+      {foodItemsData?.map((item, index) => {
         const foodItems = selectedItems.find((x) => x.id === item.id);
 
         return (
